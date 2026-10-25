@@ -12,7 +12,9 @@
 \usepackage{tabularx}
 \usepackage{xcolor}
 \usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning,shapes}
+\usetikzlibrary{arrows.meta,positioning,shapes,shapes.multipart,babel}
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
@@ -24,6 +26,7 @@
 \fancyhead[R]{Sawti-ASR-FineTuner \& Data-Augmenter}
 \fancyfoot[C]{\thepage}
 \renewcommand{\headrulewidth}{0.4pt}
+\setlength{\headheight}{15pt}
 
 \begin{document}
 
@@ -55,14 +58,378 @@
 \listoffigures
 
 % ---------- Parties (à rédiger une par une) ----------
+% =====================================================================
 \chapter{Présentation du projet}
-\textit{(À rédiger.)}
+% =====================================================================
 
+\section{Titre du projet}
+\textbf{Sawti-ASR-FineTuner \& Data-Augmenter} -- Pipeline ASR \& MLOps Audio.
+
+Il s'agit d'un projet d'initiation de 4\textsuperscript{e} année (filière IA, ENSAM Meknès),
+réalisé en binôme sur un semestre (16 semaines), dans le cadre de la plateforme
+Sawti (thème : continuité, Arabizi et code-switching).
+
+\section{Problème à résoudre}
+Les modèles fondationnels de reconnaissance automatique de la parole (ASR), comme
+Whisper, sont entraînés principalement sur des langues bien dotées en données. Ils
+donnent de mauvais résultats sur la Darija marocaine, pour trois raisons :
+\begin{itemize}
+  \item \textbf{Rareté des données} : il existe peu de corpus de Darija transcrits.
+  \item \textbf{Code-switching} : les locuteurs alternent la Darija et le français
+        dans une même phrase.
+  \item \textbf{Conditions réelles} : les enregistrements contiennent du bruit de fond
+        (rue, café, téléphone), absent des corpus propres.
+\end{itemize}
+De plus, adapter ces modèles par un \emph{full fine-tuning} coûte cher en calcul,
+alors que le projet ne dispose que de GPU gratuits (Kaggle et Google Colab, T4/P100).
+
+\section{Objectif de la solution}
+Le projet vise à concevoir un pipeline MLOps automatisé qui :
+\begin{enumerate}
+  \item augmente les données audio (SpecAugment, injection de bruit, variations de
+        pitch et de vitesse) pour compenser leur rareté ;
+  \item fine-tune efficacement le modèle Whisper avec LoRA (PEFT) ;
+  \item évalue la robustesse du modèle sur trois jeux de test : propre, bruité et
+        code-switching ;
+  \item trace toutes les expériences et versionne les modèles avec MLflow.
+\end{enumerate}
+L'objectif mesurable est de battre la baseline (full fine-tuning sans augmentation
+ni PEFT) en gain relatif de WER. Les valeurs cibles sont données dans la partie~5.
+
+\section{Périmètre}
+Le tableau~\ref{tab:perimetre} précise ce que le projet fait et ne fait pas.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{XX}
+    \toprule
+    \textbf{Inclus dans le projet} & \textbf{Exclu du projet} \\
+    \midrule
+    Préparation des données audio au format Hugging Face Datasets (nettoyage,
+    rééchantillonnage à 16~kHz, découpage train/validation/test).
+    & Collecte ou enregistrement de nouveaux audios sur le terrain. \\
+    \addlinespace
+    Pipeline d'augmentation acoustique et spectrale avec niveaux de bruit
+    contrôlés (SNR).
+    & Transcription manuelle à grande échelle de nouvelles données. \\
+    \addlinespace
+    Baseline : Whisper zero-shot et full fine-tuning (version réduite compatible
+    avec un GPU T4).
+    & Interface utilisateur ou application finale de transcription. \\
+    \addlinespace
+    Fine-tuning LoRA/PEFT et étude de ses hyperparamètres (rang, modules ciblés).
+    & Déploiement en production (serveur, API temps réel). \\
+    \addlinespace
+    Évaluation WER/CER sur trois jeux de test et calcul du gain relatif.
+    & Entraînement de grands modèles (Whisper medium/large) ou depuis zéro. \\
+    \addlinespace
+    Suivi des expériences, registre de modèles (MLflow) et script de
+    réentraînement automatisé.
+    & Synthèse vocale (TTS) et traduction. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Matrice d'inclusion et d'exclusion du projet}
+  \label{tab:perimetre}
+\end{table}
+
+\section{Utilisateurs visés}
+\begin{itemize}
+  \item \textbf{Équipe de la plateforme Sawti et encadrants} : consultent les
+        résultats et comparent les modèles.
+  \item \textbf{Ingénieurs ML / data scientists} : lancent le pipeline, ajoutent
+        des données et réentraînent les modèles.
+  \item \textbf{Communauté open source} (utilisateurs secondaires) : réutilisent le
+        code publié sur GitHub et le modèle publié sur Hugging Face.
+\end{itemize}
+
+% =====================================================================
 \chapter{Exigences fonctionnelles}
-\textit{(À rédiger.)}
+% =====================================================================
 
+\section{Fonctionnalités principales}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{lp{3.6cm}X}
+    \toprule
+    \textbf{ID} & \textbf{Fonctionnalité} & \textbf{Description} \\
+    \midrule
+    F1 & Préparation des données & Charger les corpus, nettoyer, rééchantillonner à
+    16~kHz, normaliser les transcriptions, découper en train/validation/test. \\
+    F2 & Augmentation & Ajouter du bruit (ESC-50, NOISEX) à un SNR contrôlé, faire
+    varier le pitch et la vitesse, appliquer SpecAugment. \\
+    F3 & Baseline & Évaluer Whisper en zero-shot et réaliser un full fine-tuning
+    sans augmentation. \\
+    F4 & Fine-tuning LoRA & Entraîner des adaptateurs LoRA sur Whisper, avec ou
+    sans augmentation. \\
+    F5 & Évaluation & Calculer le WER et le CER sur les jeux propre, bruité et
+    code-switching, puis le gain relatif par rapport à la baseline. \\
+    F6 & Suivi des expériences & Enregistrer dans MLflow les paramètres, les
+    métriques et les artefacts de chaque expérience. \\
+    F7 & Registre de modèles & Versionner les modèles et identifier la meilleure
+    version. \\
+    F8 & Réentraînement automatisé & Relancer toute la chaîne avec une seule
+    commande et un fichier de configuration. \\
+    F9 & Publication & Publier le meilleur modèle et sa documentation sur
+    Hugging Face. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Fonctionnalités principales}
+  \label{tab:fonctionnalites}
+\end{table}
+
+\section{Entrées attendues}
+\begin{itemize}
+  \item Fichiers audio (WAV ou FLAC, mono, 16~kHz) accompagnés de leur transcription.
+  \item Corpus de bruits (ESC-50, NOISEX) pour l'augmentation.
+  \item Fichier de configuration YAML : modèle, hyperparamètres, niveaux de SNR.
+  \item Checkpoints existants, pour reprendre un entraînement interrompu.
+\end{itemize}
+
+\section{Sorties attendues}
+\begin{itemize}
+  \item Modèles fine-tunés et adaptateurs LoRA (checkpoints).
+  \item Transcriptions prédites sur les jeux de test.
+  \item Métriques WER et CER par jeu de test, et tableau comparatif des expériences.
+  \item Runs MLflow (paramètres, courbes, artefacts) et versions de modèles dans
+        le registre.
+\end{itemize}
+
+\section{Scénarios d'utilisation}
+\paragraph{Scénario 1 -- Expérience complète.}
+L'ingénieur rédige un fichier de configuration et lance le pipeline. Les données
+sont préparées puis augmentées, le modèle est entraîné avec des checkpoints
+réguliers, puis évalué sur les trois jeux de test. Les résultats sont enregistrés
+dans MLflow. Si le modèle est meilleur que la version actuelle, il est ajouté au
+registre.
+
+\paragraph{Scénario 2 -- Réentraînement avec de nouvelles données.}
+De nouvelles données sont ajoutées au corpus. L'ingénieur relance la même commande.
+Une nouvelle version du modèle est produite et comparée à l'ancienne.
+
+\paragraph{Scénario 3 -- Reprise après une coupure du GPU.}
+La session Kaggle ou Colab s'arrête pendant l'entraînement. L'ingénieur relance le
+pipeline, qui reprend au dernier checkpoint sauvegardé.
+
+\paragraph{Scénario 4 -- Comparaison des expériences.}
+L'encadrant ouvre MLflow et compare les runs (ablations : avec ou sans augmentation,
+LoRA ou full fine-tuning, différents rangs et niveaux de SNR).
+
+\section{Priorité des fonctionnalités}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{ID} & \textbf{Fonctionnalité} & \textbf{Priorité} \\
+    \midrule
+    F1 & Préparation des données    & Indispensable \\
+    F2 & Augmentation               & Indispensable \\
+    F3 & Baseline                   & Indispensable \\
+    F4 & Fine-tuning LoRA           & Indispensable \\
+    F5 & Évaluation                 & Indispensable \\
+    F6 & Suivi des expériences      & Importante \\
+    F7 & Registre de modèles        & Importante \\
+    F8 & Réentraînement automatisé  & Importante \\
+    F9 & Publication                & Optionnelle \\
+    \bottomrule
+  \end{tabular}
+  \caption{Priorité des fonctionnalités}
+  \label{tab:priorites}
+\end{table}
+
+% =====================================================================
 \chapter{Diagrammes UML}
-\textit{(À rédiger.)}
+% =====================================================================
+
+\section{Diagramme de cas d'utilisation}
+L'ingénieur ML utilise toutes les fonctions du pipeline. L'encadrant consulte et
+compare les résultats. MLflow est un acteur système qui stocke les expériences et
+les versions de modèles.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      uc/.style={draw, ellipse, fill=white, minimum width=4.2cm, minimum height=0.85cm,
+                 font=\small, align=center},
+      actor/.style={draw, rectangle, rounded corners, fill=gray!15,
+                    minimum width=2.6cm, minimum height=0.9cm,
+                    font=\small, align=center}]
+    \draw[thick] (-0.5,-0.2) rectangle (6.5,-9.8);
+    \node at (3,-0.55) {\textbf{Pipeline Sawti-ASR}};
+    \node[uc] (u1) at (3,-1.5) {Préparer les données};
+    \node[uc] (u2) at (3,-2.6) {Augmenter les données};
+    \node[uc] (u3) at (3,-3.7) {Entraîner la baseline};
+    \node[uc] (u4) at (3,-4.8) {Fine-tuner avec LoRA};
+    \node[uc] (u5) at (3,-5.9) {Évaluer (WER / CER)};
+    \node[uc] (u6) at (3,-7.0) {Comparer les expériences};
+    \node[uc] (u7) at (3,-8.1) {Gérer le registre};
+    \node[uc] (u8) at (3,-9.2) {Relancer le réentraînement};
+    \node[actor] (a1) at (-3.1,-5.0) {Ingénieur ML};
+    \node[actor] (a2) at (9.1,-7.5) {Encadrant};
+    \node[actor] (a3) at (9.1,-3.5) {MLflow\\(système)};
+    \begin{pgfonlayer}{background}
+      \foreach \u in {u1,u2,u3,u4,u5,u6,u7,u8} \draw (a1) -- (\u);
+      \draw (a2) -- (u6);
+      \draw (a2) -- (u7);
+      \draw (a3) -- (u5);
+      \draw (a3) -- (u6);
+      \draw (a3) -- (u7);
+    \end{pgfonlayer}
+  \end{tikzpicture}
+  \caption{Diagramme de cas d'utilisation}
+  \label{fig:cas-utilisation}
+\end{figure}
+
+\clearpage
+\section{Diagramme d'activité}
+Le diagramme suivant décrit le déroulement d'une exécution complète du pipeline.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      node distance=0.5cm, >=Stealth,
+      act/.style={draw, rounded corners=6pt, minimum width=6.5cm,
+                  minimum height=0.8cm, font=\small, align=center},
+      dec/.style={draw, diamond, aspect=2.5, font=\small, align=center,
+                  inner sep=1pt}]
+    \node[circle, fill=black, minimum size=0.4cm] (s) {};
+    \node[act, below=of s]  (a1) {Charger la configuration (YAML)};
+    \node[act, below=of a1] (a2) {Charger et nettoyer les données\\(16 kHz, normalisation du texte)};
+    \node[act, below=of a2] (a3) {Découper en train / validation / test};
+    \node[act, below=of a3] (a4) {Augmenter les données d'entraînement\\(bruit, pitch, vitesse, SpecAugment)};
+    \node[act, below=of a4] (a5) {Entraîner le modèle (baseline ou LoRA)\\avec checkpoints réguliers};
+    \node[act, below=of a5] (a6) {Évaluer sur les trois jeux de test};
+    \node[act, below=of a6] (a7) {Enregistrer le run dans MLflow};
+    \node[dec, below=of a7] (d)  {Meilleur que la\\version actuelle ?};
+    \node[act, below=0.8cm of d] (a8) {Enregistrer une nouvelle version\\dans le registre};
+    \node[circle, draw, minimum size=0.55cm, below=of a8] (e) {};
+    \node[circle, fill=black, minimum size=0.3cm] at (e) {};
+    \draw[->] (s)  -- (a1);
+    \draw[->] (a1) -- (a2);
+    \draw[->] (a2) -- (a3);
+    \draw[->] (a3) -- (a4);
+    \draw[->] (a4) -- (a5);
+    \draw[->] (a5) -- (a6);
+    \draw[->] (a6) -- (a7);
+    \draw[->] (a7) -- (d);
+    \draw[->] (d)  -- node[right] {oui} (a8);
+    \draw[->] (a8) -- (e);
+    \draw[->] (d.east) -- node[above] {non} ++(2,0) |- (e.east);
+  \end{tikzpicture}
+  \caption{Diagramme d'activité du pipeline}
+  \label{fig:activite}
+\end{figure}
+
+\clearpage
+\section{Diagramme de séquence}
+Le scénario principal est l'expérience complète (scénario~1).
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      >=Stealth,
+      obj/.style={draw, fill=gray!15, minimum width=2.6cm, minimum height=0.8cm,
+                  font=\small, align=center},
+      lbl/.style={font=\scriptsize, fill=white, inner sep=1pt}]
+    \node[obj] (i) at (0,0)    {Ingénieur ML};
+    \node[obj] (p) at (3.2,0)  {Pipeline};
+    \node[obj] (t) at (6.4,0)  {Entraîneur\\(Whisper + LoRA)};
+    \node[obj] (v) at (9.6,0)  {Évaluateur};
+    \node[obj] (m) at (12.8,0) {MLflow};
+    \foreach \x in {0,3.2,6.4,9.6,12.8} \draw[dashed] (\x,-0.6) -- (\x,-9.6);
+    \draw[->] (0,-1.2) -- node[lbl, above] {lancer(config)} (3.2,-1.2);
+    \draw[->] (3.2,-1.8) -- (3.9,-1.8) -- (3.9,-2.5) -- (3.2,-2.5);
+    \node[font=\scriptsize, align=left, anchor=west] at (3.95,-2.15) {préparer\\augmenter};
+    \draw[->] (3.2,-3.1) -- node[lbl, above] {entraîner(données, config)} (6.4,-3.1);
+    \draw[->, dashed] (6.4,-3.9) -- node[lbl, above] {modèle entraîné} (3.2,-3.9);
+    \draw[->] (3.2,-4.7) -- node[lbl, above, pos=0.7] {évaluer(modèle, 3 jeux de test)} (9.6,-4.7);
+    \draw[->, dashed] (9.6,-5.5) -- node[lbl, above, pos=0.3] {WER / CER} (3.2,-5.5);
+    \draw[->] (3.2,-6.3) -- node[lbl, above, pos=0.75] {enregistrer paramètres et métriques} (12.8,-6.3);
+    \draw[->] (3.2,-7.1) -- node[lbl, above, pos=0.75] {enregistrer la version (si meilleure)} (12.8,-7.1);
+    \draw[->, dashed] (12.8,-7.9) -- node[lbl, above, pos=0.25] {numéro de version} (3.2,-7.9);
+    \draw[->, dashed] (3.2,-8.8) -- node[lbl, above] {rapport} (0,-8.8);
+  \end{tikzpicture}
+  \caption{Diagramme de séquence de l'expérience complète}
+  \label{fig:sequence}
+\end{figure}
+
+\section{Diagramme d'états-transitions}
+L'entité qui change d'état est la \textbf{version de modèle} : elle est entraînée,
+évaluée, puis rejetée ou promue, et enfin archivée lorsqu'une meilleure version la
+remplace. Dans MLflow, ces états seront représentés par des étiquettes ou des alias
+de version.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      >=Stealth,
+      st/.style={draw, rounded corners=8pt, minimum width=2.4cm,
+                 minimum height=0.8cm, font=\small},
+      lbl/.style={font=\scriptsize, align=center}]
+    \node[circle, fill=black, minimum size=0.35cm] (s) at (0,0) {};
+    \node[st] (e1) at (2.4,0)   {Entraîné};
+    \node[st] (e2) at (6.2,0)   {Évalué};
+    \node[st] (e3) at (10.4,0)  {Candidat};
+    \node[st] (e4) at (10.4,-2.6) {Production};
+    \node[st] (e5) at (6.2,-2.6)  {Archivé};
+    \node[st] (e6) at (6.2,2.4)   {Rejeté};
+    \node[circle, draw, minimum size=0.5cm] (f1) at (2.4,-2.6) {};
+    \node[circle, fill=black, minimum size=0.28cm] at (f1) {};
+    \node[circle, draw, minimum size=0.5cm] (f2) at (9.4,2.4) {};
+    \node[circle, fill=black, minimum size=0.28cm] at (f2) {};
+    \draw[->] (s)  -- (e1);
+    \draw[->] (e1) -- node[lbl, above] {évaluation\\terminée} (e2);
+    \draw[->] (e2) -- node[lbl, above] {WER $<$\\version actuelle} (e3);
+    \draw[->] (e2) -- node[lbl, left] {WER $\geq$ version actuelle} (e6);
+    \draw[->] (e6) -- (f2);
+    \draw[->] (e3) -- node[lbl, right] {validation} (e4);
+    \draw[->] (e4) -- node[lbl, above] {nouvelle version\\meilleure} (e5);
+    \draw[->] (e5) -- (f1);
+  \end{tikzpicture}
+  \caption{Diagramme d'états-transitions d'une version de modèle}
+  \label{fig:etats}
+\end{figure}
+
+\clearpage
+\section{Diagramme de classes conceptuel}
+Le diagramme présente les entités métier du projet et leurs relations.
+
+\begin{figure}[h]
+  \centering
+  \begin{tikzpicture}[
+      cls/.style={draw, rectangle split, rectangle split parts=2,
+                  font=\footnotesize, align=left, minimum width=3.4cm},
+      mul/.style={font=\scriptsize}]
+    \node[cls] (corpus) at (0,0) {\textbf{Corpus}
+      \nodepart{second} nom\\source\\volume (heures)};
+    \node[cls] (enr) at (5.2,0) {\textbf{EnregistrementAudio}
+      \nodepart{second} identifiant\\durée (s)\\fréquence (16 kHz)\\split};
+    \node[cls] (tr) at (10.4,0) {\textbf{Transcription}
+      \nodepart{second} texte\\code-switching (oui/non)};
+    \node[cls] (exp) at (0,-4.2) {\textbf{Expérience}
+      \nodepart{second} identifiant du run\\type (baseline / LoRA)\\hyperparamètres\\date};
+    \node[cls] (aug) at (5.2,-4.2) {\textbf{Augmentation}
+      \nodepart{second} type\\SNR (dB)\\paramètres};
+    \node[cls] (mod) at (0,-8.2) {\textbf{Modèle}
+      \nodepart{second} modèle de base (Whisper)\\taille\\rang LoRA};
+    \node[cls] (ver) at (5.2,-8.2) {\textbf{VersionModèle}
+      \nodepart{second} numéro\\état};
+    \node[cls] (met) at (10.4,-7.6) {\textbf{Métrique}
+      \nodepart{second} jeu de test\\WER\\CER};
+    \draw (corpus) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {*} (enr);
+    \draw (enr) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {1} (tr);
+    \draw (aug) -- node[mul, right, pos=0.15] {*} node[mul, right, pos=0.85] {*} (enr);
+    \draw (exp) -- node[mul, right, pos=0.15] {*} node[mul, right, pos=0.85] {1} (corpus);
+    \draw (exp) -- node[mul, above, pos=0.15] {*} node[mul, above, pos=0.85] {*} (aug);
+    \draw (exp) -- node[mul, right, pos=0.15] {1} node[mul, right, pos=0.85] {1} (mod);
+    \draw (mod) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {*} (ver);
+    \draw (exp) -- node[mul, above, pos=0.1] {1} node[mul, above, pos=0.9] {*} (met);
+  \end{tikzpicture}
+  \caption{Diagramme de classes conceptuel}
+  \label{fig:classes}
+\end{figure}
 
 \chapter{Données}
 \textit{(À rédiger.)}
