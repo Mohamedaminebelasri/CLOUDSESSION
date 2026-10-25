@@ -17,6 +17,7 @@
 \pgfsetlayers{background,main}
 \usepackage{fancyhdr}
 \usepackage{enumitem}
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 
 % ---------- En-têtes et pieds de page ----------
@@ -243,6 +244,11 @@ LoRA ou full fine-tuning, différents rangs et niveaux de SNR).
 \chapter{Diagrammes UML}
 % =====================================================================
 
+Le projet étant un pipeline de traitement sans interface graphique, nous retenons
+les trois diagrammes les plus utiles : le diagramme de cas d'utilisation (qui fait
+quoi), le diagramme d'activité (déroulement du pipeline) et le diagramme
+d'états-transitions (cycle de vie d'une version de modèle dans le registre).
+
 \section{Diagramme de cas d'utilisation}
 L'ingénieur ML utilise toutes les fonctions du pipeline. L'encadrant consulte et
 compare les résultats. MLflow est un acteur système qui stocke les expériences et
@@ -322,38 +328,7 @@ Le diagramme suivant décrit le déroulement d'une exécution complète du pipel
   \label{fig:activite}
 \end{figure}
 
-\clearpage
-\section{Diagramme de séquence}
-Le scénario principal est l'expérience complète (scénario~1).
 
-\begin{figure}[h]
-  \centering
-  \begin{tikzpicture}[
-      >=Stealth,
-      obj/.style={draw, fill=gray!15, minimum width=2.6cm, minimum height=0.8cm,
-                  font=\small, align=center},
-      lbl/.style={font=\scriptsize, fill=white, inner sep=1pt}]
-    \node[obj] (i) at (0,0)    {Ingénieur ML};
-    \node[obj] (p) at (3.2,0)  {Pipeline};
-    \node[obj] (t) at (6.4,0)  {Entraîneur\\(Whisper + LoRA)};
-    \node[obj] (v) at (9.6,0)  {Évaluateur};
-    \node[obj] (m) at (12.8,0) {MLflow};
-    \foreach \x in {0,3.2,6.4,9.6,12.8} \draw[dashed] (\x,-0.6) -- (\x,-9.6);
-    \draw[->] (0,-1.2) -- node[lbl, above] {lancer(config)} (3.2,-1.2);
-    \draw[->] (3.2,-1.8) -- (3.9,-1.8) -- (3.9,-2.5) -- (3.2,-2.5);
-    \node[font=\scriptsize, align=left, anchor=west] at (3.95,-2.15) {préparer\\augmenter};
-    \draw[->] (3.2,-3.1) -- node[lbl, above] {entraîner(données, config)} (6.4,-3.1);
-    \draw[->, dashed] (6.4,-3.9) -- node[lbl, above] {modèle entraîné} (3.2,-3.9);
-    \draw[->] (3.2,-4.7) -- node[lbl, above, pos=0.7] {évaluer(modèle, 3 jeux de test)} (9.6,-4.7);
-    \draw[->, dashed] (9.6,-5.5) -- node[lbl, above, pos=0.3] {WER / CER} (3.2,-5.5);
-    \draw[->] (3.2,-6.3) -- node[lbl, above, pos=0.75] {enregistrer paramètres et métriques} (12.8,-6.3);
-    \draw[->] (3.2,-7.1) -- node[lbl, above, pos=0.75] {enregistrer la version (si meilleure)} (12.8,-7.1);
-    \draw[->, dashed] (12.8,-7.9) -- node[lbl, above, pos=0.25] {numéro de version} (3.2,-7.9);
-    \draw[->, dashed] (3.2,-8.8) -- node[lbl, above] {rapport} (0,-8.8);
-  \end{tikzpicture}
-  \caption{Diagramme de séquence de l'expérience complète}
-  \label{fig:sequence}
-\end{figure}
 
 \section{Diagramme d'états-transitions}
 L'entité qui change d'état est la \textbf{version de modèle} : elle est entraînée,
@@ -392,58 +367,472 @@ de version.
   \label{fig:etats}
 \end{figure}
 
-\clearpage
-\section{Diagramme de classes conceptuel}
-Le diagramme présente les entités métier du projet et leurs relations.
+% =====================================================================
+\chapter{Données}
+% =====================================================================
+
+\section{Type de données}
+Le projet manipule trois types de données :
+\begin{itemize}
+  \item \textbf{Audio} : enregistrements de parole en Darija marocaine, avec ou sans
+        code-switching français--arabe.
+  \item \textbf{Texte} : transcription écrite de chaque enregistrement (cible de
+        l'apprentissage).
+  \item \textbf{Bruits} : enregistrements de bruits de fond, utilisés pour
+        l'augmentation et pour construire le jeu de test bruité.
+\end{itemize}
+
+\section{Sources des données}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{p{3.3cm}p{2.6cm}X}
+    \toprule
+    \textbf{Source} & \textbf{Rôle} & \textbf{Remarques} \\
+    \midrule
+    Corpus Sawti & Principal & Fourni par les encadrants. Volume et format
+    à confirmer. \\
+    \addlinespace
+    Datasets Atlas IA (Hugging Face) : DODa audio, MoulSot
+    & Complément / plan B & Darija marocaine ; MoulSot annonce environ 1\,500~h
+    d'audio dont environ 80~h de transcriptions de qualité et du code-switching
+    (chiffres annoncés par les auteurs, à vérifier). \\
+    \addlinespace
+    Casablanca & Test code-switching & Corpus multidialectal arabe avec étiquettes
+    de code-switching, dont l'arabe marocain (environ 48~h pour huit dialectes). \\
+    \addlinespace
+    ESC-50 & Bruits & 2\,000 extraits de 5~s répartis en 50 classes de sons
+    environnementaux. \\
+    \addlinespace
+    NOISEX-92 & Bruits & Corpus de bruits de référence pour l'évaluation de la
+    robustesse. \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Sources des données}
+  \label{tab:sources}
+\end{table}
+
+Les licences et les conditions d'accès de chaque source seront vérifiées avant
+utilisation.
+
+\section{Description du jeu de données}
+\begin{itemize}
+  \item \textbf{Volume} : à confirmer avec les encadrants pour le corpus Sawti.
+        Si le corpus est trop petit, il sera complété par les datasets publics.
+  \item \textbf{Variables} : fichier audio, transcription, durée, identifiant du
+        locuteur (si disponible), indicateur de code-switching.
+  \item \textbf{Classes} : la tâche n'est pas une classification. Les données sont
+        en revanche réparties en trois jeux de test :
+        \begin{itemize}
+          \item \textbf{Propre} : enregistrements de test sans modification ;
+          \item \textbf{Bruité} : les mêmes enregistrements mélangés à des bruits
+                à SNR de 20, 10, 5 et 0~dB ;
+          \item \textbf{Code-switching} : enregistrements contenant à la fois de
+                la Darija et du français.
+        \end{itemize}
+\end{itemize}
+
+\section{Prétraitement}
+\begin{enumerate}
+  \item \textbf{Conversion audio} : passage en mono et rééchantillonnage à 16~kHz,
+        la fréquence attendue par Whisper.
+  \item \textbf{Filtrage} : suppression des fichiers vides ou corrompus, et des
+        enregistrements de plus de 30~s (limite de la fenêtre d'entrée de Whisper).
+  \item \textbf{Normalisation du texte} : suppression de la ponctuation, passage en
+        minuscules pour le texte latin, et choix d'une convention d'écriture unique
+        (alphabet arabe ou latin/Arabizi), appliquée à tout le corpus.
+  \item \textbf{Découpage} : 80\,\% entraînement, 10\,\% validation, 10\,\% test,
+        en séparant les locuteurs quand l'information existe, pour éviter qu'un
+        même locuteur se trouve dans l'entraînement et dans le test.
+  \item \textbf{Séparation des bruits} : les fichiers de bruit utilisés pour
+        construire le jeu de test bruité ne sont jamais utilisés pendant
+        l'entraînement.
+  \item \textbf{Format} : les données sont stockées au format Hugging Face
+        Datasets.
+\end{enumerate}
+
+% =====================================================================
+\chapter{Approche IA}
+% =====================================================================
+
+\section{Tâche}
+Il s'agit d'une tâche de \textbf{reconnaissance automatique de la parole} (ASR) :
+transformer un signal audio en texte.
+
+\section{Entrée et sortie du modèle}
+\begin{itemize}
+  \item \textbf{Entrée} : un signal audio de 30~s au plus, converti en
+        log-spectrogramme de Mel.
+  \item \textbf{Sortie} : la transcription textuelle de l'audio.
+\end{itemize}
+
+\section{Approche et modèle envisagés}
+\paragraph{Modèle de base.}
+Nous utilisons \textbf{Whisper} (OpenAI), un modèle de type Transformer
+encodeur--décodeur pré-entraîné. Les GPU disponibles (T4 ou P100, 16~Go)
+limitent le choix aux tailles \emph{tiny} (39~M paramètres), \emph{base} (74~M)
+et \emph{small} (244~M). Whisper ne possédant pas de code de langue propre à la
+Darija, le code de langue arabe sera utilisé.
+
+\paragraph{Baseline.}
+\begin{itemize}
+  \item \textbf{Whisper zero-shot} : le modèle sans entraînement, comme point de
+        départ.
+  \item \textbf{Full fine-tuning sans augmentation} : tous les paramètres sont
+        entraînés. Pour tenir sur un T4, il est réalisé sur une taille de modèle
+        réduite et, si nécessaire, sur un sous-ensemble des données. La même
+        configuration est utilisée pour la comparaison avec LoRA.
+\end{itemize}
+
+\paragraph{Approche proposée.}
+\begin{itemize}
+  \item \textbf{Augmentation des données} :
+        \begin{itemize}
+          \item sur le signal (Audiomentations) : ajout de bruit à SNR contrôlé,
+                variation du pitch (environ $\pm 2$ demi-tons) et de la vitesse
+                (facteur 0,9 à 1,1) ;
+          \item sur le spectrogramme (SpecAugment) : masquage aléatoire de bandes
+                de fréquences et de segments de temps.
+        \end{itemize}
+  \item \textbf{Fine-tuning LoRA (PEFT)} : le modèle de base est gelé ; seules de
+        petites matrices de rang faible, ajoutées aux couches d'attention, sont
+        entraînées. Cela réduit fortement la mémoire nécessaire et la taille des
+        modèles sauvegardés.
+\end{itemize}
+
+\paragraph{Architecture globale.}
+La figure~\ref{fig:architecture} présente l'enchaînement des modules du pipeline.
 
 \begin{figure}[h]
   \centering
   \begin{tikzpicture}[
-      cls/.style={draw, rectangle split, rectangle split parts=2,
-                  font=\footnotesize, align=left, minimum width=3.4cm},
-      mul/.style={font=\scriptsize}]
-    \node[cls] (corpus) at (0,0) {\textbf{Corpus}
-      \nodepart{second} nom\\source\\volume (heures)};
-    \node[cls] (enr) at (5.2,0) {\textbf{EnregistrementAudio}
-      \nodepart{second} identifiant\\durée (s)\\fréquence (16 kHz)\\split};
-    \node[cls] (tr) at (10.4,0) {\textbf{Transcription}
-      \nodepart{second} texte\\code-switching (oui/non)};
-    \node[cls] (exp) at (0,-4.2) {\textbf{Expérience}
-      \nodepart{second} identifiant du run\\type (baseline / LoRA)\\hyperparamètres\\date};
-    \node[cls] (aug) at (5.2,-4.2) {\textbf{Augmentation}
-      \nodepart{second} type\\SNR (dB)\\paramètres};
-    \node[cls] (mod) at (0,-8.2) {\textbf{Modèle}
-      \nodepart{second} modèle de base (Whisper)\\taille\\rang LoRA};
-    \node[cls] (ver) at (5.2,-8.2) {\textbf{VersionModèle}
-      \nodepart{second} numéro\\état};
-    \node[cls] (met) at (10.4,-7.6) {\textbf{Métrique}
-      \nodepart{second} jeu de test\\WER\\CER};
-    \draw (corpus) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {*} (enr);
-    \draw (enr) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {1} (tr);
-    \draw (aug) -- node[mul, right, pos=0.15] {*} node[mul, right, pos=0.85] {*} (enr);
-    \draw (exp) -- node[mul, right, pos=0.15] {*} node[mul, right, pos=0.85] {1} (corpus);
-    \draw (exp) -- node[mul, above, pos=0.15] {*} node[mul, above, pos=0.85] {*} (aug);
-    \draw (exp) -- node[mul, right, pos=0.15] {1} node[mul, right, pos=0.85] {1} (mod);
-    \draw (mod) -- node[mul, above, pos=0.15] {1} node[mul, above, pos=0.85] {*} (ver);
-    \draw (exp) -- node[mul, above, pos=0.1] {1} node[mul, above, pos=0.9] {*} (met);
+      >=Stealth, node distance=1cm,
+      mod/.style={draw, rounded corners, fill=gray!10, minimum width=3.4cm,
+                  minimum height=1.1cm, font=\small, align=center}]
+    \node[mod] (d) at (0,0)    {Données brutes\\(Sawti, Atlas IA)};
+    \node[mod] (p) at (4.6,0)  {Préparation\\(HF Datasets)};
+    \node[mod] (a) at (9.2,0)  {Augmentation\\(Audiomentations,\\SpecAugment)};
+    \node[mod] (b) at (9.2,2.2) {Bruits\\(ESC-50, NOISEX)};
+    \node[mod] (t) at (9.2,-2.6) {Entraînement\\(Whisper : full FT\\ou LoRA)};
+    \node[mod] (e) at (4.6,-2.6) {Évaluation\\(WER / CER\\sur 3 jeux de test)};
+    \node[mod] (m) at (0,-2.6)   {MLflow\\(suivi + registre\\de modèles)};
+    \draw[->] (d) -- (p);
+    \draw[->] (p) -- (a);
+    \draw[->] (b) -- (a);
+    \draw[->] (a) -- (t);
+    \draw[->] (t) -- (e);
+    \draw[->] (e) -- (m);
+    \draw[->] (b.west) -| node[pos=0.25, above, font=\scriptsize] {jeu de test bruité} (2.3,-1.4) -| (3.6,-1.95);
   \end{tikzpicture}
-  \caption{Diagramme de classes conceptuel}
-  \label{fig:classes}
+  \caption{Architecture globale du pipeline}
+  \label{fig:architecture}
 \end{figure}
 
-\chapter{Données}
-\textit{(À rédiger.)}
+\paragraph{Hyperparamètres de départ.}
+Le tableau~\ref{tab:hyper} donne les valeurs initiales, qui seront ajustées selon
+les premiers résultats et le volume réel des données.
 
-\chapter{Approche IA}
-\textit{(À rédiger.)}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Paramètre} & \textbf{Full fine-tuning} & \textbf{LoRA} \\
+    \midrule
+    Modules ciblés          & tous           & \texttt{q\_proj}, \texttt{v\_proj} \\
+    Rang $r$                & --             & 16 (tests : 8 et 32) \\
+    $\alpha$ LoRA           & --             & 32 \\
+    Dropout LoRA            & --             & 0,05 \\
+    Taux d'apprentissage    & $1\times10^{-5}$ & $1\times10^{-3}$ \\
+    Taille de batch effective & 16 (accumulation de gradients) & 16 \\
+    Précision               & fp16           & fp16 \\
+    Gradient checkpointing  & oui            & oui \\
+    Sauvegarde              & toutes les 200 étapes & toutes les 200 étapes \\
+    \bottomrule
+  \end{tabular}
+  \caption{Hyperparamètres de départ}
+  \label{tab:hyper}
+\end{table}
 
+\section{Métriques d'évaluation}
+\begin{itemize}
+  \item \textbf{WER} (Word Error Rate), taux d'erreur sur les mots :
+  \[
+    \mathrm{WER} = \frac{S + D + I}{N}
+  \]
+  où $S$, $D$ et $I$ sont les nombres de substitutions, suppressions et insertions
+  de mots, et $N$ le nombre de mots de la référence.
+  \item \textbf{CER} (Character Error Rate) : même calcul au niveau des caractères,
+        utile pour la Darija dont l'orthographe varie.
+  \item \textbf{Gain relatif de WER} par rapport à la baseline :
+  \[
+    \mathrm{Gain} = \frac{\mathrm{WER}_{\text{baseline}} - \mathrm{WER}_{\text{modèle}}}{\mathrm{WER}_{\text{baseline}}}
+  \]
+\end{itemize}
+Ces métriques sont calculées séparément sur les jeux propre, bruité (par niveau de
+SNR) et code-switching.
+
+\section{Résultat minimum attendu}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lll}
+    \toprule
+    \textbf{Jeu de test} & \textbf{Objectif minimum} & \textbf{Objectif visé} \\
+    \midrule
+    Bruité          & gain relatif $\geq 10\,\%$ & $\geq 20\,\%$ \\
+    Code-switching  & gain relatif $\geq 5\,\%$  & $\geq 10\,\%$ \\
+    Propre          & perte $\leq 1$ point de WER & égal ou meilleur \\
+    \bottomrule
+  \end{tabular}
+  \caption{Objectifs de performance par rapport à la baseline}
+  \label{tab:objectifs}
+\end{table}
+
+Ces objectifs seront ajustés après la mesure de la baseline.
+
+\section{Plan d'expériences}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Expérience} & \textbf{Description} \\
+    \midrule
+    E0 & Whisper zero-shot (sans entraînement) \\
+    E1 & Full fine-tuning sans augmentation (\textbf{baseline}) \\
+    E2 & Full fine-tuning avec augmentation \\
+    E3 & LoRA sans augmentation \\
+    E4 & LoRA avec augmentation, rangs $r = 8$, 16 et 32 \\
+    E5 & Meilleure configuration de E4, avec différents niveaux de SNR
+         d'entraînement \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Plan d'expériences (ablations)}
+  \label{tab:experiences}
+\end{table}
+
+Les résultats seront présentés sous la forme suivante :
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabular}{lcccccc}
+    \toprule
+    \textbf{Exp.} & \textbf{Param.} & \textbf{WER} & \textbf{WER} & \textbf{WER}
+    & \textbf{CER} & \textbf{Gain} \\
+    & \textbf{entraînés} & \textbf{propre} & \textbf{bruité} & \textbf{CS} & & \textbf{bruité} \\
+    \midrule
+    E0 & -- & & & & & \\
+    E1 & & & & & & réf. \\
+    \ldots & & & & & & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Format du tableau de résultats (CS : code-switching)}
+  \label{tab:resultats}
+\end{table}
+
+% =====================================================================
 \chapter{Exigences non fonctionnelles}
-\textit{(À rédiger.)}
+% =====================================================================
 
+\section{Mode d'utilisation}
+Le pipeline est utilisé sans interface graphique : il est lancé par des scripts en
+ligne de commande ou depuis des notebooks Kaggle et Google Colab. Chaque exécution
+est entièrement décrite par un fichier de configuration YAML. Les résultats sont
+consultés dans l'interface web de MLflow.
+
+\section{Contraintes matérielles et temps d'exécution}
+\begin{itemize}
+  \item \textbf{GPU gratuits uniquement} (Kaggle, Google Colab : T4 ou P100, 16~Go).
+        Les quotas d'utilisation et la durée maximale des sessions sont limités ;
+        leurs valeurs exactes seront vérifiées au début du projet.
+  \item \textbf{Reprise après coupure} : un checkpoint est sauvegardé régulièrement
+        et l'entraînement peut reprendre au dernier checkpoint.
+  \item \textbf{Économie de mémoire} : précision fp16, gradient checkpointing et
+        accumulation de gradients.
+  \item \textbf{Temps de réponse} : non critique, car il n'y a pas d'utilisation en
+        temps réel. La durée d'entraînement et d'évaluation de chaque expérience est
+        tout de même enregistrée.
+\end{itemize}
+
+\section{Qualité, reproductibilité et traçabilité}
+\begin{itemize}
+  \item Graines aléatoires fixées et versions des bibliothèques figées
+        (\texttt{requirements.txt}).
+  \item Chaque expérience est enregistrée dans MLflow avec sa configuration, ses
+        métriques et ses artefacts.
+  \item Code organisé en modules, documenté (README) et versionné sur GitHub.
+\end{itemize}
+
+\section{Environnement technique}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{lX}
+    \toprule
+    \textbf{Élément} & \textbf{Choix} \\
+    \midrule
+    Langage & Python 3 \\
+    Apprentissage profond & PyTorch, Hugging Face Transformers \\
+    Fine-tuning efficace & Hugging Face PEFT (LoRA) \\
+    Données & Hugging Face Datasets \\
+    Audio & Librosa, Audiomentations \\
+    Évaluation & bibliothèque de calcul du WER/CER (par exemple jiwer ou evaluate) \\
+    Suivi et registre & MLflow \\
+    Calcul & Kaggle, Google Colab \\
+    Versionnement et publication & Git, GitHub, Hugging Face Hub \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Environnement technique}
+  \label{tab:environnement}
+\end{table}
+
+% =====================================================================
 \chapter{Planning et livrables}
-\textit{(À rédiger.)}
+% =====================================================================
 
+\section{Phases du projet}
+\begin{enumerate}
+  \item \textbf{Cadrage} : étude du sujet, état de l'art, cahier des charges.
+  \item \textbf{Données} : collecte, prétraitement, jeux de test.
+  \item \textbf{Baseline} : Whisper zero-shot et full fine-tuning.
+  \item \textbf{Augmentation et LoRA} : développement des deux modules.
+  \item \textbf{Expériences} : ablations et analyse des résultats.
+  \item \textbf{Industrialisation} : automatisation, registre de modèles,
+        documentation.
+  \item \textbf{Clôture} : rapport final et soutenance.
+\end{enumerate}
+
+\section{Échéancier}
+La personne A est responsable des données, de l'augmentation et de l'évaluation.
+La personne B est responsable du fine-tuning, de la baseline, de MLflow et de
+l'automatisation.
+
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{lXXl}
+    \toprule
+    \textbf{Semaines} & \textbf{Personne A} & \textbf{Personne B} & \textbf{Jalon} \\
+    \midrule
+    S1--S2 & \multicolumn{2}{l}{Étude du sujet, état de l'art, cahier des charges}
+           & Cahier des charges \\
+    \addlinespace
+    S3--S4 & Collecte et exploration des données & Environnement, dépôt GitHub,
+           MLflow, Whisper zero-shot & \\
+    \addlinespace
+    S5--S6 & Prétraitement, découpage, trois jeux de test & Baseline full
+           fine-tuning & Baseline mesurée \\
+    \addlinespace
+    S7--S8 & Pipeline d'augmentation (bruit, pitch, vitesse, SpecAugment)
+           & Premiers entraînements LoRA & \\
+    \addlinespace
+    S9--S10 & Scripts d'évaluation complets (WER/CER, gain relatif)
+            & LoRA avec augmentation & Point de mi-parcours \\
+    \addlinespace
+    S11--S12 & Ablations sur les niveaux de SNR & Ablations sur les rangs LoRA,
+             registre de modèles & Résultats des expériences \\
+    \addlinespace
+    S13 & Analyse de la robustesse & Automatisation du réentraînement & Pipeline
+        complet \\
+    \addlinespace
+    S14 & \multicolumn{2}{l}{Documentation, nettoyage du code, publication}
+        & Dépôt final \\
+    \addlinespace
+    S15 & \multicolumn{2}{l}{Rédaction du rapport final} & Rapport final \\
+    \addlinespace
+    S16 & \multicolumn{2}{l}{Préparation et soutenance} & Soutenance \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Échéancier et jalons (S1 à S16)}
+  \label{tab:planning}
+\end{table}
+
+\section{Livrables}
+\begin{itemize}
+  \item Cahier des charges (S2).
+  \item Jeux de données préparés et documentés (propre, bruité, code-switching).
+  \item Code du pipeline : préparation, augmentation, entraînement, évaluation,
+        réentraînement automatisé (dépôt GitHub).
+  \item Modèles entraînés enregistrés dans le registre MLflow.
+  \item Résultats d'évaluation : tableau comparatif des expériences.
+  \item Rapport final et support de soutenance.
+  \item (Optionnel) Meilleur modèle publié sur Hugging Face.
+\end{itemize}
+
+\section{Risques et solutions de repli}
+\begin{table}[h]
+  \centering
+  \small
+  \begin{tabularx}{\textwidth}{XX}
+    \toprule
+    \textbf{Risque} & \textbf{Solution de repli} \\
+    \midrule
+    Corpus Sawti indisponible ou trop petit & Utiliser les datasets publics
+    (Atlas IA, Casablanca) \\
+    \addlinespace
+    Coupures ou quotas des GPU gratuits & Checkpoints réguliers, reprise
+    automatique, répartition des runs sur Kaggle et Colab \\
+    \addlinespace
+    Full fine-tuning trop lourd pour un T4 & Modèle plus petit (tiny ou base) et
+    sous-ensemble des données, avec la même configuration pour LoRA \\
+    \addlinespace
+    Transcriptions incohérentes (alphabet arabe ou latin) & Normalisation du texte
+    et suivi du CER en plus du WER \\
+    \addlinespace
+    Pas de gain mesurable & Analyse par type de bruit et par niveau de SNR,
+    ajustement des hyperparamètres \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Risques et solutions de repli}
+  \label{tab:risques}
+\end{table}
+
+% =====================================================================
 \chapter{Annexes}
-\textit{(À rédiger.)}
+% =====================================================================
+
+\section{Glossaire}
+\begin{description}[style=nextline]
+  \item[ASR] Automatic Speech Recognition : reconnaissance automatique de la parole.
+  \item[Arabizi] Écriture de l'arabe ou de la Darija avec l'alphabet latin et des
+        chiffres.
+  \item[Code-switching] Alternance de deux langues dans une même phrase
+        (ici Darija et français).
+  \item[WER / CER] Taux d'erreur sur les mots / sur les caractères.
+  \item[SNR] Signal-to-Noise Ratio : rapport entre le niveau de la parole et celui
+        du bruit, en décibels.
+  \item[SpecAugment] Augmentation qui masque des bandes de fréquences et des
+        segments de temps du spectrogramme.
+  \item[Fine-tuning] Réentraînement d'un modèle pré-entraîné sur de nouvelles
+        données.
+  \item[Zero-shot] Utilisation d'un modèle sans entraînement supplémentaire.
+  \item[LoRA / PEFT] Low-Rank Adaptation / Parameter-Efficient Fine-Tuning :
+        fine-tuning qui n'entraîne qu'une petite partie des paramètres.
+  \item[MLOps] Pratiques d'automatisation et de suivi du cycle de vie des modèles.
+  \item[Checkpoint] Sauvegarde de l'état d'un entraînement pour pouvoir le reprendre.
+\end{description}
+
+\section{Références et sources des données}
+\begin{itemize}
+  \item A. Radford et al., \emph{Robust Speech Recognition via Large-Scale Weak
+        Supervision} (Whisper), 2022.
+  \item E. Hu et al., \emph{LoRA: Low-Rank Adaptation of Large Language Models},
+        2021.
+  \item D. Park et al., \emph{SpecAugment: A Simple Data Augmentation Method for
+        Automatic Speech Recognition}, 2019.
+  \item K. Piczak, \emph{ESC: Dataset for Environmental Sound Classification}, 2015.
+  \item A. Varga et H. Steeneken, NOISEX-92, 1993.
+  \item Corpus Casablanca : \url{https://arxiv.org/abs/2410.04527}
+  \item Collection Atlas IA (Hugging Face) :
+        \url{https://huggingface.co/collections/atlasia/speech-data-and-models}
+  \item Modèle MoulSot : \url{https://huggingface.co/01Yassine/moulsot.v0.3}
+\end{itemize}
+
+\section{Diagrammes complémentaires}
+Les diagrammes de séquence et de classes n'ont pas été retenus dans ce document,
+car ils apportent peu d'information supplémentaire pour un pipeline sans interface.
+Ils pourront être ajoutés au rapport final si nécessaire.
 
 \end{document}
