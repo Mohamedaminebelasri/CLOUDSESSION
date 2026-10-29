@@ -34,7 +34,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 13 | 2023-24 Q16 | Rôle des prototypes alpha | b | b | ✅ |
 | 14 | 2023-24 Q20 | Brevet d'invention | c | b, c | ❌ partiel (oublié b) |
 | 15 | 2024-25 Q6 | Conception détaillée | a | a | ✅ |
-| 16 | 2024-25 Q13 | Time to market, cycle de vie, design to cost | | b, c | |
+| 16 | 2024-25 Q13 | Time to market, cycle de vie, design to cost | c | b, c | ❌ partiel (oublié b) |
 | 17 | 2024-25 Q18 | Prototypage | | a, b, e | |
 
 ## Questions à revoir
@@ -44,3 +44,4 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 - **P3 / Q6 (TD Q17)** : j'ai oublié « c) faire le choix des matériaux ». VRAI : choisir les matériaux fait partie de la conception détaillée (forme, matériaux, tolérances) = développement du produit. Ordonnancement détaillé et supervision = pilotage (MES/SCADA), donc FAUX.
 - **P3 / Q10 (2023-24 Q12)** : j'ai oublié « c) se fait après le développement du concept ». VRAI : ordre = concept → préliminaire → détaillée. (Même question que P3/Q8 où j'avais juste : l'ordre des options a changé → lire chaque option.)
 - **P3 / Q14 (2023-24 Q20)** : j'ai oublié « b) les entreprises gardent parfois leurs innovations secrètes au lieu de breveter ». VRAI : un brevet oblige à publier l'invention, donc certaines entreprises préfèrent le secret (Coca-Cola, Google, Michelin). Mais « le brevet protège les secrets de fabrication » = FAUX (le brevet publie, il ne cache pas).
+- **P3 / Q16 (2024-25 Q13)** : j'ai oublié « b) les cycles de vie ont tendance à se raccourcir ». VRAI (cours §3.1 : le cycle de vie des produits raccourcit ; TD Q6b idem, que j'avais juste). Même phrase, autre formulation → la reconnaître.
