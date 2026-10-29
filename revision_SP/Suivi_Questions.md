@@ -24,7 +24,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 3 | TD Q8 | Brevet | a, b, c | a, b, c | ✅ |
 | 4 | TD Q14 | Développement d'un nouveau produit | a, b, c | a, c | ❌ (b en trop) |
 | 5 | TD Q16 | Conception préliminaire | c | c | ✅ |
-| 6 | TD Q17 | Développement d'un nouveau produit | | a, c | |
+| 6 | TD Q17 | Développement d'un nouveau produit | a | a, c | ❌ partiel (oublié c) |
 | 7 | 2022-23 Q8 | Projet de conception d'un nouveau produit | | b, c, d | |
 | 8 | 2022-23 Q11 | Conception préliminaire | | a, c | |
 | 9 | 2023-24 Q9 | Phases du cycle de vie | | d | |
@@ -41,3 +41,4 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 - **P1+2 / Q1 (TD Q1)** : j'ai oublié « c) ensemble de moyens humains et matériels et capacités techniques ». C'est vrai : c'est la définition du cours (moyens humains, matériels, technologiques…). Pas de mot piège → cocher.
 - **P3 / Q4 (TD Q14)** : j'ai coché « b) effectuer une planification de la production ». FAUX : planifier la production, c'est le travail du système de production / pilotage (parties 6-7), pas du développement du produit. Le développement = définir le produit + prototype.
+- **P3 / Q6 (TD Q17)** : j'ai oublié « c) faire le choix des matériaux ». VRAI : choisir les matériaux fait partie de la conception détaillée (forme, matériaux, tolérances) = développement du produit. Ordonnancement détaillé et supervision = pilotage (MES/SCADA), donc FAUX.
