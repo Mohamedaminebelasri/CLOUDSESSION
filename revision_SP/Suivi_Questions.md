@@ -11,7 +11,9 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 3 | 2022-23 Q5 | Un système de production | c, d | c, d | ✅ |
 | 4 | 2022-23 Q15 | Définir le système de production | c | c | ✅ |
 | 5 | 2023-24 Q1 | Définition d'un processus | a | a | ✅ |
-| 6 | 2024-25 Q8 | Qu'est-ce qu'un système de production | | a, b | |
+| 6 | 2024-25 Q8 | Qu'est-ce qu'un système de production | a, b | a, b | ✅ |
+
+**Score Partie 1 + 2 : 5/6** (1 partiel)
 
 ## Questions à revoir
 
