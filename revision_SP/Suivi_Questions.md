@@ -6,7 +6,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 | # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
 |---|---|---|---|---|---|
-| 1 | TD Q1 | Définition système de production | | a, b, c | |
+| 1 | TD Q1 | Définition système de production | a, b | a, b, c | ❌ partiel (oublié c) |
 | 2 | TD Q4 | Les flux de l'entreprise | | a | |
 | 3 | 2022-23 Q5 | Un système de production | | c, d | |
 | 4 | 2022-23 Q15 | Définir le système de production | | c | |
@@ -15,4 +15,4 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 ## Questions à revoir
 
-(à remplir)
+- **P1+2 / Q1 (TD Q1)** : j'ai oublié « c) ensemble de moyens humains et matériels et capacités techniques ». C'est vrai : c'est la définition du cours (moyens humains, matériels, technologiques…). Pas de mot piège → cocher.
