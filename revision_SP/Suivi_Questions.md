@@ -23,7 +23,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 2 | TD Q7 | Étapes de conception, prototypes | a, c | a, c | ✅ |
 | 3 | TD Q8 | Brevet | a, b, c | a, b, c | ✅ |
 | 4 | TD Q14 | Développement d'un nouveau produit | a, b, c | a, c | ❌ (b en trop) |
-| 5 | TD Q16 | Conception préliminaire | | c | |
+| 5 | TD Q16 | Conception préliminaire | c | c | ✅ |
 | 6 | TD Q17 | Développement d'un nouveau produit | | a, c | |
 | 7 | 2022-23 Q8 | Projet de conception d'un nouveau produit | | b, c, d | |
 | 8 | 2022-23 Q11 | Conception préliminaire | | a, c | |
