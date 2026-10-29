@@ -35,7 +35,9 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 14 | 2023-24 Q20 | Brevet d'invention | c | b, c | ❌ partiel (oublié b) |
 | 15 | 2024-25 Q6 | Conception détaillée | a | a | ✅ |
 | 16 | 2024-25 Q13 | Time to market, cycle de vie, design to cost | c | b, c | ❌ partiel (oublié b) |
-| 17 | 2024-25 Q18 | Prototypage | | a, b, e | |
+| 17 | 2024-25 Q18 | Prototypage | a, b, e | a, b, e | ✅ |
+
+**Score Partie 3 : 12/17** (5 erreurs, dont 4 « oublié une bonne réponse »)
 
 ## Questions à revoir
 
