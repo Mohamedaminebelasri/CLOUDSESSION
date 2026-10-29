@@ -25,7 +25,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 4 | TD Q14 | Développement d'un nouveau produit | a, b, c | a, c | ❌ (b en trop) |
 | 5 | TD Q16 | Conception préliminaire | c | c | ✅ |
 | 6 | TD Q17 | Développement d'un nouveau produit | a | a, c | ❌ partiel (oublié c) |
-| 7 | 2022-23 Q8 | Projet de conception d'un nouveau produit | | b, c, d | |
+| 7 | 2022-23 Q8 | Projet de conception d'un nouveau produit | b, c, d | b, c, d | ✅ |
 | 8 | 2022-23 Q11 | Conception préliminaire | | a, c | |
 | 9 | 2023-24 Q9 | Phases du cycle de vie | | d | |
 | 10 | 2023-24 Q12 | Conception préliminaire | | c, d | |
