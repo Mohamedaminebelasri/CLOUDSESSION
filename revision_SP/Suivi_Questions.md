@@ -10,7 +10,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 2 | TD Q4 | Les flux de l'entreprise | a | a | ✅ |
 | 3 | 2022-23 Q5 | Un système de production | c, d | c, d | ✅ |
 | 4 | 2022-23 Q15 | Définir le système de production | c | c | ✅ |
-| 5 | 2023-24 Q1 | Définition d'un processus | | a | |
+| 5 | 2023-24 Q1 | Définition d'un processus | a | a | ✅ |
 | 6 | 2024-25 Q8 | Qu'est-ce qu'un système de production | | a, b | |
 
 ## Questions à revoir
