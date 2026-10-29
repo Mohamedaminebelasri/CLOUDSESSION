@@ -33,7 +33,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 12 | 2023-24 Q15 | Design to cost | a | a | ✅ |
 | 13 | 2023-24 Q16 | Rôle des prototypes alpha | b | b | ✅ |
 | 14 | 2023-24 Q20 | Brevet d'invention | c | b, c | ❌ partiel (oublié b) |
-| 15 | 2024-25 Q6 | Conception détaillée | | a | |
+| 15 | 2024-25 Q6 | Conception détaillée | a | a | ✅ |
 | 16 | 2024-25 Q13 | Time to market, cycle de vie, design to cost | | b, c | |
 | 17 | 2024-25 Q18 | Prototypage | | a, b, e | |
 
