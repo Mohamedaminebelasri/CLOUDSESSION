@@ -20,7 +20,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
 |---|---|---|---|---|---|
 | 1 | TD Q6 | Time to market, cycle de vie, design to cost | b, c | b, c | ✅ |
-| 2 | TD Q7 | Étapes de conception, prototypes | | a, c | |
+| 2 | TD Q7 | Étapes de conception, prototypes | a, c | a, c | ✅ |
 | 3 | TD Q8 | Brevet | | a, b, c | |
 | 4 | TD Q14 | Développement d'un nouveau produit | | a, c | |
 | 5 | TD Q16 | Conception préliminaire | | c | |
