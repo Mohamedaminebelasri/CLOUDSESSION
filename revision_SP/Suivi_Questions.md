@@ -30,7 +30,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 9 | 2023-24 Q9 | Phases du cycle de vie | d | d | ✅ |
 | 10 | 2023-24 Q12 | Conception préliminaire | d | c, d | ❌ partiel (oublié c) |
 | 11 | 2023-24 Q14 | Projet de conception d'un nouveau produit | a, b | a, b | ✅ |
-| 12 | 2023-24 Q15 | Design to cost | | a | |
+| 12 | 2023-24 Q15 | Design to cost | a | a | ✅ |
 | 13 | 2023-24 Q16 | Rôle des prototypes alpha | | b | |
 | 14 | 2023-24 Q20 | Brevet d'invention | | b, c | |
 | 15 | 2024-25 Q6 | Conception détaillée | | a | |
