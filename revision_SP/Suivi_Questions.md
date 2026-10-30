@@ -76,6 +76,25 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 **Score Partie 5 : 9/11**
 
+## Partie 6 – Système de production et gammes (12 questions choisies sur 13)
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q19 | Approche déductive | b, c | b, c | ✅ |
+| 2 | TD Q20 | Technologie de groupe | a, b | a, b | ✅ |
+| 3 | TD Q21 | Démarche générative | a, b | a, b | ✅ |
+| 4 | 2023-24 Q17 | Approche générative | a | a | ✅ |
+| 5 | 2023-24 Q33 | Avantage de la TG | a | a | ✅ |
+| 6 | 2024-25 Q3 | Déductive vs générative | a | a | ✅ |
+| 7 | 2024-25 Q10 | Technologie de groupe | a, b, c, e, g | a, b, c, e, g | ✅ |
+| 8 | 2022-23 Q16 | Étape : manutentions → implantation | 4 | 4 | ✅ |
+| 9 | 2022-23 Q17 | Étape : sélection des processus | avant-projet | avant-projet (5) | ✅ |
+| 10 | 2022-23 Q18 | Étape : supervision, ordonnancement | pilotage | pilotage (1) | ✅ |
+| 11 | 2022-23 Q19 | Étape : objectifs, alternatives | faisabilité | faisabilité (2) | ✅ |
+| 12 | 2022-23 Q20 | Étape : stations, équilibrage, HSE | choix des moyens | choix des moyens (3) | ✅ |
+
+**Score Partie 6 : 12/12** (ordre des 5 étapes aussi juste : faisabilité → avant-projet → moyens → pilotage → implantation)
+
 ## Questions à revoir
 
 - **P1+2 / Q1 (TD Q1)** : j'ai oublié « c) ensemble de moyens humains et matériels et capacités techniques ». C'est vrai : c'est la définition du cours (moyens humains, matériels, technologiques…). Pas de mot piège → cocher.
