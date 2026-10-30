@@ -95,6 +95,24 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 **Score Partie 6 : 12/12** (ordre des 5 étapes aussi juste : faisabilité → avant-projet → moyens → pilotage → implantation)
 
+## Partie 7 – Industrialisation (9 questions)
+
+**Décision (élève) : on suit les corrigés des tests ; les phrases du TD Q22b (« achetés si dédié ») et Q23a/b (« flexible → conçus », « dédié → achetés ») sont considérées comme des erreurs du TD. À confirmer avec le prof.**
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q22 | Industrialisation | a, b | b (avant-projet / sélection) | ❌ (a en trop selon la décision) |
+| 2 | TD Q23 | Industrialisation | c, e | c, e | ✅ |
+| 3 | 2022-23 Q4 | Définitions | a, b, c | a, b, c | ✅ |
+| 4 | 2022-23 Q7 | Industrialisation | a, b, c, d | b, d | ❌ |
+| 5 | 2023-24 Q11 | Industrialisation | a, b, c, d | b, c | ❌ |
+| 6 | 2024-25 Q14 | Industrialisation | b, c | b | ❌ |
+| 7 | 2024-25 Q1 | Coûts flexible / dédiée | a, b | a, b | ✅ |
+| 8 | 2024-25 Q2 | Économies d'échelle | a | a | ✅ |
+| 9 | 2024-25 Q22 | Lancement / maturité | b | b | ✅ |
+
+**Score Partie 7 : 5/9**
+
 ## Questions à revoir
 
 - **P1+2 / Q1 (TD Q1)** : j'ai oublié « c) ensemble de moyens humains et matériels et capacités techniques ». C'est vrai : c'est la définition du cours (moyens humains, matériels, technologiques…). Pas de mot piège → cocher.
@@ -112,3 +130,15 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 - **P5 / Q1 (TD Q15)** : j'ai oublié « d) la sélection du processus est intimement liée à la conception du produit ». VRAI.
 - **P5 / Q10 (2024-25 Q5)** : j'ai fait 1500 / 2400 = 62. Mais « ajusté » = on enlève l'arrêt de la capacité : (24 − 3) × 100 = 2100, donc 1500 / 2100 = 71,43 → **71**.
 - **P5 / Q11 (2024-25 Q21)** : a (charge = quantité réelle à traiter) est VRAI par définition (confirmé par le TD Q3). Le corrigé du test ne coche que d : probable erreur du prof → à confirmer avec le prof. Pas une erreur de ma part.
+- **P7 / Q1, Q4, Q5, Q6 (TD Q22, 2022-23 Q7, 2023-24 Q11, 2024-25 Q14)** : j'ai coché les pièges « concevoir si diversité élevée », « acheter si grandes quantités / masse », « achetés si dédié ». Règle retenue : FAUX = acheter les moyens (dédié, grandes quantités, masse), concevoir les moyens (flexible, diversité élevée), « toujours » en interne. VRAI = concevoir et mettre en place un système adéquat ; job shop pour petites séries / chemins différents ; avant-projet pour sélectionner le processus (jamais définitif).
+
+## Bilan global (après les parties 1 à 7)
+| Partie | Score |
+|---|---|
+| 1 + 2 | 5/6 |
+| 3 | 12/17 |
+| 4 | 7/12 |
+| 5 | 9/11 |
+| 6 | 12/12 |
+| 7 | 5/9 |
+| **Total** | **50/67 (75 %)** — 17 questions à refaire |
