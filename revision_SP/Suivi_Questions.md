@@ -72,9 +72,9 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 8 | 2023-24 Q6 | Formule taux d'utilisation | b | b | ✅ |
 | 9 | 2023-24 Q10 | Taux de charge (350 / 500) | 70 | 70 | ✅ |
 | 10 | 2024-25 Q5 | Taux de charge ajusté | 62 | 71 | ❌ |
-| 11 | 2024-25 Q21 | Charge-capacité | a, d | d (corrigé) | ❌ (conflit TD / corrigé) |
+| 11 | 2024-25 Q21 | Charge-capacité | a, d | a, d (corrigé du test : seulement d, probable erreur du prof) | ✅ (à confirmer avec le prof) |
 
-**Score Partie 5 : 8/11**
+**Score Partie 5 : 9/11**
 
 ## Questions à revoir
 
@@ -92,4 +92,4 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 - **P5 / Q1 (TD Q15)** : j'ai oublié « d) la sélection du processus est intimement liée à la conception du produit ». VRAI.
 - **P5 / Q10 (2024-25 Q5)** : j'ai fait 1500 / 2400 = 62. Mais « ajusté » = on enlève l'arrêt de la capacité : (24 − 3) × 100 = 2100, donc 1500 / 2100 = 71,43 → **71**.
-- **P5 / Q11 (2024-25 Q21)** : j'ai coché a (charge = quantité réelle à traiter) + d. Le corrigé ne coche que d. Conflit connu : a est logique d'après le TD mais non coché au test → en cas de doute, ne cocher que d.
+- **P5 / Q11 (2024-25 Q21)** : a (charge = quantité réelle à traiter) est VRAI par définition (confirmé par le TD Q3). Le corrigé du test ne coche que d : probable erreur du prof → à confirmer avec le prof. Pas une erreur de ma part.
