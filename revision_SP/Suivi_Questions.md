@@ -58,6 +58,24 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 
 **Score Partie 4 : 7/12** (série 1 : 0/4 à refaire, réponses fausses choisies exprès ou non)
 
+## Partie 5 – Sélection du processus et calculs (11 questions)
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q15 | Sélection du processus | c | c, d | ❌ partiel (oublié d) |
+| 2 | TD Q18 | Sélection du processus | b, d | b, d | ✅ |
+| 3 | 2023-24 Q13 | Sélection du processus | a, b | a, b | ✅ |
+| 4 | 2023-24 Q7 | Tension du flux (6 h / 8 h) | 75 | 75 | ✅ |
+| 5 | 2024-25 Q11 | Tension du flux (5 étapes) | 33 | 33 | ✅ |
+| 6 | TD Q2 | Taux de charge (180 × 2 min) | 75 | 75 | ✅ |
+| 7 | TD Q3 | Charge / capacité / ressources | d | d | ✅ |
+| 8 | 2023-24 Q6 | Formule taux d'utilisation | b | b | ✅ |
+| 9 | 2023-24 Q10 | Taux de charge (350 / 500) | 70 | 70 | ✅ |
+| 10 | 2024-25 Q5 | Taux de charge ajusté | 62 | 71 | ❌ |
+| 11 | 2024-25 Q21 | Charge-capacité | a, d | d (corrigé) | ❌ (conflit TD / corrigé) |
+
+**Score Partie 5 : 8/11**
+
 ## Questions à revoir
 
 - **P1+2 / Q1 (TD Q1)** : j'ai oublié « c) ensemble de moyens humains et matériels et capacités techniques ». C'est vrai : c'est la définition du cours (moyens humains, matériels, technologiques…). Pas de mot piège → cocher.
@@ -71,3 +89,7 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 - **P4 / Q3 (TD Q10)** : nouvelle usine = production par projet (c). Flow shop = même produit en masse ; job shop = petites séries variées.
 - **P4 / Q4 (TD Q11)** : avion = implantation à produit fixe (d), car le produit est énorme et ne bouge pas.
 - **P4 / Q6 (2022-23 Q9)** : « on choisit le système selon productivité et flexibilité » est VRAI (classification §4.9, 2 axes). Ne pas confondre avec les 4 critères de la sélection du processus (partie 5). Pas de mot « uniquement » → exception à la règle.
+
+- **P5 / Q1 (TD Q15)** : j'ai oublié « d) la sélection du processus est intimement liée à la conception du produit ». VRAI.
+- **P5 / Q10 (2024-25 Q5)** : j'ai fait 1500 / 2400 = 62. Mais « ajusté » = on enlève l'arrêt de la capacité : (24 − 3) × 100 = 2100, donc 1500 / 2100 = 71,43 → **71**.
+- **P5 / Q11 (2024-25 Q21)** : j'ai coché a (charge = quantité réelle à traiter) + d. Le corrigé ne coche que d. Conflit connu : a est logique d'après le TD mais non coché au test → en cas de doute, ne cocher que d.
