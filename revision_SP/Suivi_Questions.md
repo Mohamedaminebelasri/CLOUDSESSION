@@ -202,3 +202,43 @@ Règle adoptée : on suit les corrigés des tests (MES « superviser en temps r�
 | 6 | TD Q27 | Réflexion : intégré ≠ reconfigurable, avantage du RMS | (passé) | réponse type dans la fiche ch.2 | ⏭️ à refaire |
 
 **Score Ch2 Partie 4 : 5/6** (1 rédactionnelle non répondue, 0 faute)
+
+## Ch2 Partie 5 – Industrie 4.0, CPS, pyramide aplatie (13 questions)
+
+Règle adoptée : « Ethernet remplace de plus en plus les réseaux d'usine et de cellules » = VRAI (cours + test 2023-24 Q38) ; le TD Q34b le marque faux.
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q31 | Usine intelligente | a, b, c | a, b | ❌ (c en trop) |
+| 2 | TD Q32 | CPPS | a | a, b | ❌ partiel (oublié b) |
+| 3 | TD Q33 | CPPS | a, c | a, c | ✅ |
+| 4 | TD Q34 | Pyramide aplatie | a, c | b, c | ❌ (a en trop, oublié b) |
+| 5 | TD Q36 | Industrie 4.0 / CPS | b, c | b, c | ✅ |
+| 6 | 2022-23 Q3 | Industrie 4.0 | b, c | b, c | ✅ |
+| 7 | 2023-24 Q25 | Qu'est-ce qu'un CPPS | b | b | ✅ |
+| 8 | 2023-24 Q28 | Pyramide aplatie | a | a | ✅ |
+| 9 | 2023-24 Q35 | Usine intelligente | c | c | ✅ |
+| 10 | 2023-24 Q36 | Objectif de l'Industrie 4.0 | c, d | c, d | ✅ |
+| 11 | 2023-24 Q37 | CPPS | a, c, d | a, d | ❌ (c en trop) |
+| 12 | 2023-24 Q38 | Pyramide aplatie | b, d | a, c | ❌ |
+| 13 | 2024-25 Q16 | Exemples de CPS | a | a, b | ❌ partiel (oublié b) |
+
+**Score Ch2 Partie 5 : 7/13**
+
+## Ch2 – Questions à revoir
+- **P5 / Q1 (TD Q31)** et **Q11 (2023-24 Q37)** : j'ai coché une phrase négative fausse (« usine intelligente n'est pas un CPS » ; « CPPS n'a pas de relation avec l'internet »). Règle : une usine intelligente EST un CPS, et un CPS est connecté (lien avec Internet).
+- **P5 / Q2 (TD Q32)** : oublié b « un CPPS est décrit par une pyramide productique aplatie » (VRAI).
+- **P5 / Q4 (TD Q34)** : a faux (Ethernet ne remplace pas TOUS les RLI), oublié b (usine et cellules).
+- **P5 / Q12 (2023-24 Q38)** : b (réalité augmentée) et d (« modèle qui met à plat ») sont des pièges ; bonnes : a (lien avec Internet) et c (Ethernet remplace terrain, usine, cellules).
+- **P5 / Q13 (2024-25 Q16)** : oublié b « bâtiments intelligents = CPS » (VRAI).
+- **Questions passées à refaire** : Ch2 P1 Q2 (TD Q25), P2 Q2 (TD Q28) et Q8 (2024-25 Q20), P3 Q5 (2023-24 Q22) et Q6 (2023-24 Q24), P4 Q6 (TD Q27).
+
+## Bilan CHAPITRE 2
+| Partie | Score |
+|---|---|
+| 1 FMS | 3/4 |
+| 2 CIM + réseaux | 6/8 |
+| 3 SCADA / MES / ERP | 6/8 |
+| 4 RMS / Plug and Produce | 5/6 |
+| 5 Industrie 4.0 / CPS | 7/13 |
+| **Total** | **27/39 (69 %)** — 6 fautes, 6 passées |
