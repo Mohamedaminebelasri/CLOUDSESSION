@@ -157,3 +157,18 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 4 | 2024-25 Q12 | FMS se distingue par | c | c | ✅ |
 
 **Score Ch2 Partie 1 : 3/3 répondues** (Q2 rédactionnelle à refaire)
+
+## Ch2 Partie 2 – Pyramide CIM et réseaux (8 questions)
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q26 | Flexibilité, CIM 5 niveaux, réseau de cellule, reconfigurable | a, b, d, e | a, b, d, e | ✅ |
+| 2 | TD Q28 | Association 18 éléments ↔ niveaux CIM | (passé) | voir tableau de correction | ⏭️ à refaire |
+| 3 | 2022-23 Q6 | Réseaux 1, 2, 3 | b | b | ✅ |
+| 4 | 2023-24 Q23 | Qu'est-ce que la pyramide CIM | c | c | ✅ |
+| 5 | 2023-24 Q27 | Signification de CIM | c | c | ✅ |
+| 6 | 2024-25 Q7 | Utilité de la pyramide CIM | b | b | ✅ |
+| 7 | 2024-25 Q15 | Association niveaux A–E + protocoles | tout juste | A, B, C, D, E | ✅ |
+| 8 | 2024-25 Q20 | Système automatisé intégré CIM | (non répondu) | c | ⏭️ à refaire |
+
+**Score Ch2 Partie 2 : 6/8** (2 non répondues, 0 faute)
