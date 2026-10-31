@@ -189,3 +189,16 @@ Règle adoptée : on suit les corrigés des tests (MES « superviser en temps r�
 | 8 | 2023-24 Q34 | Fonction de l'ERP | c | c | ✅ |
 
 **Score Ch2 Partie 3 : 6/8** (2 non répondues, 0 faute)
+
+## Ch2 Partie 4 – RMS et Plug and Produce (6 questions)
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | 2023-24 Q30 | Caractéristique du Plug and Produce | d | d | ✅ |
+| 2 | 2023-24 Q31 | Avantages de la reconfiguration | b, c | b, c | ✅ |
+| 3 | 2023-24 Q32 | Éléments clés du Plug and Produce | b | b | ✅ |
+| 4 | 2024-25 Q9 | Avantages RMS et Plug and Produce | b | b | ✅ |
+| 5 | 2024-25 Q4 | Reconfigurable, intégré, flexibilité, CIM | a, c, d | a, c, d | ✅ |
+| 6 | TD Q27 | Réflexion : intégré ≠ reconfigurable, avantage du RMS | (passé) | réponse type dans la fiche ch.2 | ⏭️ à refaire |
+
+**Score Ch2 Partie 4 : 5/6** (1 rédactionnelle non répondue, 0 faute)
