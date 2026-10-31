@@ -172,3 +172,20 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 8 | 2024-25 Q20 | Système automatisé intégré CIM | (non répondu) | c | ⏭️ à refaire |
 
 **Score Ch2 Partie 2 : 6/8** (2 non répondues, 0 faute)
+
+## Ch2 Partie 3 – SCADA / MES / ERP (8 questions)
+
+Règle adoptée : on suit les corrigés des tests (MES « superviser en temps réel » = faux). Le TD coche aussi cette ligne pour le MES (Q30d, Q35d).
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q29 | SCADA | b, d | b, d | ✅ |
+| 2 | TD Q30 | MES | a, c | a, c (règle tests ; TD : a, c, d) | ✅ |
+| 3 | TD Q35 | MES | a, b, c | a, b, c (règle tests ; TD : a, b, c, d) | ✅ |
+| 4 | 2023-24 Q21 | MES | c, d | c, d | ✅ |
+| 5 | 2023-24 Q22 | Logiciel de pilotage d'atelier | (passé) | c (MES) | ⏭️ à refaire |
+| 6 | 2023-24 Q24 | SCADA | (passé) | a (pilote en temps réel) | ⏭️ à refaire |
+| 7 | 2023-24 Q26 | Rôle du MES | b, c | b, c | ✅ |
+| 8 | 2023-24 Q34 | Fonction de l'ERP | c | c | ✅ |
+
+**Score Ch2 Partie 3 : 6/8** (2 non répondues, 0 faute)
