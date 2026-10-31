@@ -142,3 +142,18 @@ Légende : ✅ juste · ❌ faux · ⏭️ passé · 🌍 traduction demandée
 | 6 | 12/12 |
 | 7 | 5/9 |
 | **Total** | **50/67 (75 %)** — 17 questions à refaire |
+
+---
+
+# CHAPITRE 2 (39 questions : TD 13, 2022-23 3, 2023-24 16, 2024-25 7)
+
+## Ch2 Partie 1 – Bases et systèmes flexibles (4 questions)
+
+| # | Source | Thème | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|---|
+| 1 | TD Q24 | Cellule flexible d'usinage | b | b | ✅ |
+| 2 | TD Q25 | Réflexion : ligne de transfert / atelier / cellule / centre d'usinage + critères | (passé) | réponse type donnée | ⏭️ à refaire |
+| 3 | 2022-23 Q2 | FMS, automatisation flexible | a, b, c, d, e | a, b, c, d, e | ✅ |
+| 4 | 2024-25 Q12 | FMS se distingue par | c | c | ✅ |
+
+**Score Ch2 Partie 1 : 3/3 répondues** (Q2 rédactionnelle à refaire)
