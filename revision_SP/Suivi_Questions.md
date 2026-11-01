@@ -301,3 +301,15 @@ Prochaine étape de révision : Partie 7 (4 fautes), puis Partie 5, puis la sér
 **Score révision Partie 7 : 4/4** (avant : 5/9). Pièges maintenant évités : « acheter si grandes quantités / production en masse », « concevoir si diversité élevée », « toujours en interne ».
 
 Prochaine étape de révision : Partie 5 (2 fautes), puis la série 1 de la Partie 4 (jamais vraiment testée).
+
+# RÉVISION CHAPITRE 1 : Partie 5 (refaite)
+
+| # | Source | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|
+| 1 | TD Q15 | d | c, d | ❌ partiel (oublié c : « effectuée lors de l'industrialisation ») |
+| 2 | 2024-25 Q5 | 71 | 71 | ✅ |
+| 3 | Calcul voisin (20 h, 50/h, arrêt 4 h, 600 pièces) | 75 | 75 | ✅ |
+
+**Score révision Partie 5 : 2/3.** Les calculs « ajustés » sont acquis ; (heures − arrêt) × cadence. Pour la sélection du processus : « industrialisation » ET « liée à la conception du produit » sont vraies ; les options négatives sont fausses.
+
+Prochaine étape de révision : série 1 de la Partie 4 (TD Q5, Q9, Q10, Q11, jamais vraiment testée), puis Parties 1+2.
