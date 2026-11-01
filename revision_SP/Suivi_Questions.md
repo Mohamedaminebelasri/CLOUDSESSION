@@ -272,3 +272,19 @@ Q1 (70 %), **Q6 (60 %)**, Q14b (70 %), Q22c et Q22e (70 %), Q27 (75 %), Q28a (70
 - Job shop : machines générales, chemin propre à chaque produit ; flow shop : machines dédiées, même chemin.
 - Réseau de terrain : capteurs/actionneurs ↔ automates ; réseau de cellule : automates ↔ SCADA.
 - Q6 (acheter / concevoir les moyens) : ce test semble inverser le TD (dédié → conçus, flexible → achetés). À confirmer.
+
+---
+
+# RÉVISION CHAPITRE 1 : Partie 3 (refaite) 
+
+| # | Source | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|
+| 1 | TD Q14 | b, c | a, c | ❌ (a oubliée, b « planification de la production » en trop : encore le même piège) |
+| 2 | TD Q17 | a, c | a, c | ✅ |
+| 3 | 2023-24 Q12 | c, d | c, d | ✅ |
+| 4 | 2023-24 Q20 | b, c | b, c | ✅ |
+| 5 | 2024-25 Q13 | b, c | b, c | ✅ |
+
+**Score révision Partie 3 : 4/5.** À retenir : production / planification / ordonnancement / supervision = pilotage (pas le développement du produit).
+
+Prochaine étape de révision : Partie 7 (4 fautes), puis Partie 5, puis la série 1 de la Partie 4.
