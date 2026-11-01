@@ -242,3 +242,33 @@ Règle adoptée : « Ethernet remplace de plus en plus les réseaux d'usine et d
 | 4 RMS / Plug and Produce | 5/6 |
 | 5 Industrie 4.0 / CPS | 7/13 |
 | **Total** | **27/39 (69 %)** — 6 fautes, 6 passées |
+
+---
+
+# TEST 2025-26 (37 questions, correction DÉDUITE, non officielle)
+
+Détail et correction complète : `Test_2025_2026_Correction.md`. Barème : +1 par bonne option cochée, −0,5 par option fausse.
+
+## Résultats par question (contre ma correction déduite)
+
+Questions parfaites (30) : Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q11, Q12, Q13, Q15, Q16, Q17, Q18, Q19, Q20, Q22, Q23, Q24, Q25, Q26, Q27, Q28, Q29, Q30, Q33, Q34, Q35, Q36, Q37.
+
+| Q | Ma réponse | Correction | Erreur |
+|---|---|---|---|
+| Q10 | a, d | b, d | ❌ a en trop (« machines dédiées » = flow shop) ; oublié b (gamme opératoire propre à chaque produit) |
+| Q14 | b, d | b, c, d | ❌ oublié c (réseau terrain : capteurs/actionneurs) |
+| Q21 | a | a, b | ❌ oublié b (Big Data : modèles prédictifs, anomalies en temps réel) |
+| Q31 | a, c | c | ❌ a en trop (« automatiser tout » = mot absolu) |
+| Q32 | b, c | c | ❌ b en trop (« dépourvus de capteurs et de communication » = faux) |
+
+**Score estimé : 72,5 / 77 (environ 94 %)** selon ma correction déduite et un barème par option. À prendre avec prudence : la correction n'est pas officielle.
+
+## Questions où ma correction est peu sûre (à confirmer avec le prof)
+Q1 (70 %), **Q6 (60 %)**, Q14b (70 %), Q22c et Q22e (70 %), Q27 (75 %), Q28a (70 %), Q7 (90 ou 73).
+
+## Points à retenir
+- Mots absolus (interdits, toujours, uniquement, tout, aucun) : presque toujours FAUX.
+- Un système intelligent / CPS a toujours des capteurs, de la communication et un lien avec Internet.
+- Job shop : machines générales, chemin propre à chaque produit ; flow shop : machines dédiées, même chemin.
+- Réseau de terrain : capteurs/actionneurs ↔ automates ; réseau de cellule : automates ↔ SCADA.
+- Q6 (acheter / concevoir les moyens) : ce test semble inverser le TD (dédié → conçus, flexible → achetés). À confirmer.
