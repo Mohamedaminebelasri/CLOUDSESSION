@@ -288,3 +288,16 @@ Q1 (70 %), **Q6 (60 %)**, Q14b (70 %), Q22c et Q22e (70 %), Q27 (75 %), Q28a (70
 **Score révision Partie 3 : 4/5.** À retenir : production / planification / ordonnancement / supervision = pilotage (pas le développement du produit).
 
 Prochaine étape de révision : Partie 7 (4 fautes), puis Partie 5, puis la série 1 de la Partie 4.
+
+# RÉVISION CHAPITRE 1 : Partie 7 (refaite)
+
+| # | Source | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|
+| 1 | TD Q22 | b | b | ✅ |
+| 2 | 2022-23 Q7 | b, d | b, d | ✅ |
+| 3 | 2023-24 Q11 | b, c | b, c | ✅ |
+| 4 | 2024-25 Q14 | b | b | ✅ |
+
+**Score révision Partie 7 : 4/4** (avant : 5/9). Pièges maintenant évités : « acheter si grandes quantités / production en masse », « concevoir si diversité élevée », « toujours en interne ».
+
+Prochaine étape de révision : Partie 5 (2 fautes), puis la série 1 de la Partie 4 (jamais vraiment testée).
