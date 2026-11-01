@@ -313,3 +313,25 @@ Prochaine étape de révision : Partie 5 (2 fautes), puis la série 1 de la Part
 **Score révision Partie 5 : 2/3.** Les calculs « ajustés » sont acquis ; (heures − arrêt) × cadence. Pour la sélection du processus : « industrialisation » ET « liée à la conception du produit » sont vraies ; les options négatives sont fausses.
 
 Prochaine étape de révision : série 1 de la Partie 4 (TD Q5, Q9, Q10, Q11, jamais vraiment testée), puis Parties 1+2.
+
+# RÉVISION CHAPITRE 1 : Partie 4, série 1 (refaite, vraiment testée)
+
+| # | Source | Ma réponse | Bonne réponse | Résultat |
+|---|---|---|---|---|
+| 1 | TD Q5 | a, c, d | a, c, d | ✅ |
+| 2 | TD Q9 | b, c, d | b, c, d | ✅ |
+| 3 | TD Q10 | c | c | ✅ |
+| 4 | TD Q11 | d | d | ✅ |
+
+**Score : 4/4.**
+
+## Bilan de la révision du chapitre 1
+| Partie | Avant | Révision |
+|---|---|---|
+| 3 (NPD) | 12/17 | 4/5 (reste : TD Q14, « planification de la production » = pilotage) |
+| 7 (industrialisation) | 5/9 | 4/4 |
+| 5 (sélection + calculs) | 9/11 | 2/3 (reste : TD Q15, oublier « effectuée lors de l'industrialisation ») |
+| 4 (série 1) | non testée | 4/4 |
+| 1+2, 6 | 5/6 et 12/12 | non refaites |
+
+Prochaines étapes : refaire TD Q14 (partie 3), TD Q15 (partie 5) et TD Q1 (parties 1+2) une dernière fois, puis les 12 questions du chapitre 2, puis un examen blanc de 45 minutes.
