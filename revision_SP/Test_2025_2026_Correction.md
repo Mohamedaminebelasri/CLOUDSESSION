@@ -283,7 +283,7 @@ Valeur ajoutée = 4 h + 1 h = 5 h. Temps total = 4 + 1 + 5 = 10 h. 5 / 10 = **50
 >
 > **Méthode :** questions par séries de 4 ; je réponds par lettres (`1 ab, 2 c`), « passe » si je ne sais pas, « traduis » pour l'arabe. Sauvegarde mes réponses dans `Suivi_Questions.md` **une seule fois à la fin de chaque partie** (pas à chaque question, ça coûte cher). Pas de commentaires inutiles.
 >
-> **Règles adoptées :** en cas de conflit TD / test, on suit les **corrigés des tests**. Pour l'industrialisation, « acheter si grandes quantités / en masse » et « concevoir si diversité élevée » sont faux dans les 3 tests. Le MES ne « supervise » pas (c'est le SCADA). La pyramide aplatie : Ethernet remplace de plus en plus les réseaux d'usine et de cellules (vrai).
+> **Règle de priorité (décidée par l'élève) :** en cas de contradiction, on suit TOUJOURS dans cet ordre : (1) les **corrigés des tests**, (2) le **cours**, (3) le **TD** en dernier (il peut contenir des fautes). Conséquence : les « aléas » vont au MES (cours), pas au SCADA (TD). Exception décidée par l'élève : 2024-25 Q21, la phrase « la charge est la quantité réelle à traiter » est comptée VRAIE (erreur probable du corrigé). Pour l'industrialisation, « acheter si grandes quantités / en masse » et « concevoir si diversité élevée » sont faux dans les 3 tests. Le MES ne « supervise » pas (c'est le SCADA). La pyramide aplatie : Ethernet remplace de plus en plus les réseaux d'usine et de cellules (vrai).
 >
 > **Où j'en suis :** chapitre 1 = 50/67 (17 questions à refaire) ; chapitre 2 = 27/39 (12 à refaire, dont 6 passées). Tu peux commencer par me poser le test 2025-26 (37 questions, 4 par 4, 1 point par bonne réponse, −0,5 par fausse), en te basant sur la correction du fichier.
 >
