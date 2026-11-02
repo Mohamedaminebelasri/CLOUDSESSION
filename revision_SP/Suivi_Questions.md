@@ -340,3 +340,9 @@ Prochaines étapes : refaire TD Q14 (partie 3), TD Q15 (partie 5) et TD Q1 (part
 
 TD Q22 : b ✅ · 2022-23 Q7 : b, d ✅ · 2023-24 Q11 : b, c ✅ · 2024-25 Q14 : b ✅ → **4/4** (2ᵉ fois de suite). Partie 7 maîtrisée.
 Prochaine partie faible (scores initiaux) : Partie 4 (58 %), puis Partie 3 (71 %).
+
+# RÉVISION 2 CHAPITRE 1 : Partie 4 (après réexplication détaillée)
+
+2022-23 Q9 : d ✅ · TD Q5 : a, c, d ✅ · TD Q9 : b, c, d ✅ · TD Q10 : c ✅ · TD Q11 : d ✅ · 2025-26 Q10 : b, c ❌ (bonne : b, d ; « standardisée, grande série » = flow shop) → **5/6**.
+Point restant : job shop vs flow shop (mots « standardisé », « grande série », « machines dédiées » = flow shop).
+Prochaine partie faible (scores initiaux) : Partie 3 (71 %).
