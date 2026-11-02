@@ -335,3 +335,8 @@ Prochaine étape de révision : série 1 de la Partie 4 (TD Q5, Q9, Q10, Q11, ja
 | 1+2, 6 | 5/6 et 12/12 | non refaites |
 
 Prochaines étapes : refaire TD Q14 (partie 3), TD Q15 (partie 5) et TD Q1 (parties 1+2) une dernière fois, puis les 12 questions du chapitre 2, puis un examen blanc de 45 minutes.
+
+# RÉVISION 2 CHAPITRE 1 : Partie 7 (2ᵉ passage, après réexplication détaillée)
+
+TD Q22 : b ✅ · 2022-23 Q7 : b, d ✅ · 2023-24 Q11 : b, c ✅ · 2024-25 Q14 : b ✅ → **4/4** (2ᵉ fois de suite). Partie 7 maîtrisée.
+Prochaine partie faible (scores initiaux) : Partie 4 (58 %), puis Partie 3 (71 %).
